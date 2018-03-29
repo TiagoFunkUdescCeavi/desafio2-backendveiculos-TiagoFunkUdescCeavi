@@ -29,10 +29,6 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(br.udesc.ceavi.teste_rest.ClienteResource.class);
-        resources.add(br.udesc.ceavi.teste_rest.FornecedorResource.class);
-        resources.add(br.udesc.ceavi.teste_rest.HelloworldResource.class);
-        resources.add(br.udesc.ceavi.teste_rest.ProdutosResource.class);
         resources.add(br.udesc.ceavi.teste_rest.VeiculosResource.class);
     }
     
