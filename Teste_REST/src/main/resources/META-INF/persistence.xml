@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="Desafio02_PU" transaction-type="JTA">
-    <jta-data-source>java:app/Desafio02</jta-data-source>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+  <persistence-unit name="Teste_REST_PU" transaction-type="JTA">
+    <jta-data-source>java:app/TesteREST</jta-data-source>
+    <class>br.udesc.ceavi.teste_rest.model.Cliente</class>
+    <class>br.udesc.ceavi.teste_rest.model.Fornecedor</class>
+    <class>br.udesc.ceavi.teste_rest.model.Produto</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>

@@ -1,11 +1,11 @@
-package persistence;
+package br.udesc.ceavi.teste_rest.persistence;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 public class DAOGenerico {
     
-    protected static final String nomePU = "Desafio02_PU";
+    protected final static String nomePU = "Teste_REST_PU";
     
     public static void salvar(Object object){
         EntityManagerFactory emf = 
@@ -24,40 +24,24 @@ public class DAOGenerico {
     }
     
     public static Object ler(Class classe, long id){
-        Object object = null;
         EntityManagerFactory emf = 
-            javax.persistence.Persistence.createEntityManagerFactory( nomePU );
+                javax.persistence.Persistence.createEntityManagerFactory( nomePU );
         EntityManager em = emf.createEntityManager();
+        Object obj = null;
         em.getTransaction().begin();
         try {
-            object = em.find(classe, id);
+            obj = em.find( classe, id );
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().rollback();
         } finally {
             em.close();
-        } 
-        return object;
+        }
+        return obj;
     }
     
-    public static void atualizar(Object object){
-        EntityManagerFactory emf = 
-            javax.persistence.Persistence.createEntityManagerFactory( nomePU );
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        try {
-            em.merge(object);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        } 
-    }
-    
-    public static void deletar(Object object) {
+    public static void excluir( Object object ){
         EntityManagerFactory emf = 
                 javax.persistence.Persistence.createEntityManagerFactory( nomePU );
         EntityManager em = emf.createEntityManager();
@@ -70,6 +54,22 @@ public class DAOGenerico {
             em.getTransaction().rollback();
         } finally {
             em.close();
-        }
+        } 
+    }
+    
+    public static void update(Object object){
+        EntityManagerFactory emf = 
+                javax.persistence.Persistence.createEntityManagerFactory( nomePU );
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            em.merge(object);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        } 
     }
 }

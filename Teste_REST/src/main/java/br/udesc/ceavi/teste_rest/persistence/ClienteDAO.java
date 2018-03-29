@@ -1,16 +1,16 @@
-package persistence;
+package br.udesc.ceavi.teste_rest.persistence;
 
+import br.udesc.ceavi.teste_rest.model.Cliente;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import model.Veiculo;
 
-public class VeiculoDAO extends DAOGenerico{
+public class ClienteDAO extends DAOGenerico{
     
-    public static List< Veiculo > ordenarVeiculos(){
+    public static List<Cliente> listar(){
         EntityManagerFactory emf = 
                 javax.persistence.Persistence.createEntityManagerFactory( nomePU );
         EntityManager em = emf.createEntityManager();
-        return em.createQuery("SELECT v FROM Veiculo v").getResultList();
+        return em.createQuery( "SELECT c FROM Cliente c").getResultList();
     }
 }
