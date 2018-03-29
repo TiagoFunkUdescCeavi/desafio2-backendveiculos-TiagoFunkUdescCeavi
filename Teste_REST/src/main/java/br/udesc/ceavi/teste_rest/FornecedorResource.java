@@ -67,7 +67,7 @@ public class FornecedorResource {
         System.out.println("ID: " + id);
         System.err.println( f.toString() );
         if( f != null ){
-            DAOGenerico.excluir( f );
+//            DAOGenerico.excluir( f );
 //            return "Sucesso";
         }else{
 //            return "Erro ao processar fornecedor";

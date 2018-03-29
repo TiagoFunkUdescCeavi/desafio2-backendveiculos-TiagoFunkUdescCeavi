@@ -5,6 +5,7 @@
     <class>br.udesc.ceavi.teste_rest.model.Cliente</class>
     <class>br.udesc.ceavi.teste_rest.model.Fornecedor</class>
     <class>br.udesc.ceavi.teste_rest.model.Produto</class>
+    <class>br.udesc.ceavi.teste_rest.model.Veiculo</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>

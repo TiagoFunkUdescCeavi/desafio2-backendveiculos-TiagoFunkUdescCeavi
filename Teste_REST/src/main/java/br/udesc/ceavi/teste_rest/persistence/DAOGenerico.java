@@ -41,22 +41,6 @@ public class DAOGenerico {
         return obj;
     }
     
-    public static void excluir( Object object ){
-        EntityManagerFactory emf = 
-                javax.persistence.Persistence.createEntityManagerFactory( nomePU );
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        try {
-            em.remove(object);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        } 
-    }
-    
     public static void update(Object object){
         EntityManagerFactory emf = 
                 javax.persistence.Persistence.createEntityManagerFactory( nomePU );

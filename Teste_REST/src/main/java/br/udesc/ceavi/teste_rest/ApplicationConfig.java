@@ -33,6 +33,7 @@ public class ApplicationConfig extends Application {
         resources.add(br.udesc.ceavi.teste_rest.FornecedorResource.class);
         resources.add(br.udesc.ceavi.teste_rest.HelloworldResource.class);
         resources.add(br.udesc.ceavi.teste_rest.ProdutosResource.class);
+        resources.add(br.udesc.ceavi.teste_rest.VeiculosResource.class);
     }
     
 }
