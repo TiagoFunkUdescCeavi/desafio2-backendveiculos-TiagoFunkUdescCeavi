@@ -5,11 +5,11 @@ import javax.persistence.EntityManagerFactory;
 
 public class DAOGenerico {
     
-    protected final static String nomePU = "Teste_REST_PU";
+    protected final static String NOME_PU = "Teste_REST_PU";
     
     public static void salvar(Object object){
         EntityManagerFactory emf = 
-                javax.persistence.Persistence.createEntityManagerFactory( nomePU );
+                javax.persistence.Persistence.createEntityManagerFactory(NOME_PU );
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
@@ -25,7 +25,7 @@ public class DAOGenerico {
     
     public static Object ler(Class classe, long id){
         EntityManagerFactory emf = 
-                javax.persistence.Persistence.createEntityManagerFactory( nomePU );
+                javax.persistence.Persistence.createEntityManagerFactory(NOME_PU );
         EntityManager em = emf.createEntityManager();
         Object obj = null;
         em.getTransaction().begin();
@@ -43,7 +43,7 @@ public class DAOGenerico {
     
     public static void update(Object object){
         EntityManagerFactory emf = 
-                javax.persistence.Persistence.createEntityManagerFactory( nomePU );
+                javax.persistence.Persistence.createEntityManagerFactory(NOME_PU );
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
