@@ -3,6 +3,8 @@
   <persistence-unit name="Teste_REST_PU" transaction-type="JTA">
     <jta-data-source>java:app/TesteREST</jta-data-source>
     <class>br.udesc.ceavi.teste_rest.model.Veiculo</class>
+    <class>br.udesc.ceavi.teste_rest.model.Modelo</class>
+    <class>br.udesc.ceavi.teste_rest.model.Montadora</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>

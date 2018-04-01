@@ -4,7 +4,6 @@ import br.udesc.ceavi.teste_rest.model.Veiculo;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
 
 public class VeiculoDao extends DAOGenerico{
     
@@ -13,6 +12,14 @@ public class VeiculoDao extends DAOGenerico{
                 javax.persistence.Persistence.createEntityManagerFactory(NOME_PU );
         EntityManager em = emf.createEntityManager();
         return em.createQuery( "SELECT v FROM Veiculo v").getResultList();
+    }
+    
+    public static void excluir(long id) {
+        EntityManagerFactory emf = 
+                javax.persistence.Persistence.createEntityManagerFactory(NOME_PU );
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.createQuery( "DELETE FROM Veiculo v WHERE v.id = " + id ).executeUpdate();
     }
     
     public static List<Veiculo> buscarComFiltro( String filtro ){

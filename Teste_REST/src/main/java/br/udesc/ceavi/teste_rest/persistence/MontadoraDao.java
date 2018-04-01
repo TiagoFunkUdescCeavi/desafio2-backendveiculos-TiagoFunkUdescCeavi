@@ -13,4 +13,12 @@ public class MontadoraDao extends DAOGenerico{
         EntityManager em = emf.createEntityManager();
         return em.createQuery( "SELECT m FROM Montadora m").getResultList();
     }
+
+    public static void excluir(long id) {
+        EntityManagerFactory emf = 
+                javax.persistence.Persistence.createEntityManagerFactory(NOME_PU );
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.createQuery( "DELETE FROM Montadora m WHERE m.id = " + id ).executeUpdate();
+    }
 }

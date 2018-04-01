@@ -1,7 +1,9 @@
 package br.udesc.ceavi.teste_rest;
 
+import br.udesc.ceavi.teste_rest.model.Modelo;
 import br.udesc.ceavi.teste_rest.model.Montadora;
 import br.udesc.ceavi.teste_rest.persistence.DAOGenerico;
+import br.udesc.ceavi.teste_rest.persistence.ModeloDao;
 import br.udesc.ceavi.teste_rest.persistence.MontadoraDao;
 import java.util.List;
 import javax.ws.rs.core.Context;
@@ -28,31 +30,33 @@ public class ModelosResource {
     @GET
     @Path( "/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Montadora getJson( @PathParam( "id" ) String id ) {
-        return (Montadora) DAOGenerico.ler( Montadora.class, Long.parseLong( id ) );
+    public Modelo getJson( @PathParam( "id" ) String id ) {
+        return (Modelo) DAOGenerico.ler( Modelo.class, Long.parseLong( id ) );
     }
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Montadora> getListaJson(){
-        return MontadoraDao.listar();
+    public List<Modelo> getListaJson(){
+        return ModeloDao.listar();
     }
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void postJson(Montadora m) {
+    public void postJson(Modelo m) {
+        System.out.println( "POST: " + m.toString() );
         DAOGenerico.salvar( m );
     }
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(Montadora m) {
+    public void putJson(Modelo m) {
         DAOGenerico.update( m );
     }
     
     @DELETE
+    @Path( "/{id}")
     @Consumes( MediaType.APPLICATION_JSON )
-    public void excluir( Montadora m ){
-        DAOGenerico.exluir( m );
+    public void excluir( @PathParam( "id" ) String id ){
+        ModeloDao.excluir( Long.parseLong( id ) );
     }
 }

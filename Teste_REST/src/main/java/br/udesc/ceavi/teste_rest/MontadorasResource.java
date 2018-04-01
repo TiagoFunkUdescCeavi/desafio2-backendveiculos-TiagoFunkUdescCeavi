@@ -51,8 +51,9 @@ public class MontadorasResource {
     }
     
     @DELETE
+    @Path("/{id}")
     @Consumes( MediaType.APPLICATION_JSON )
-    public void excluir( Montadora m ){
-        DAOGenerico.exluir( m );
+    public void excluir( @PathParam( "id" ) String id ){
+        MontadoraDao.excluir( Long.parseLong( id ) );
     }
 }
