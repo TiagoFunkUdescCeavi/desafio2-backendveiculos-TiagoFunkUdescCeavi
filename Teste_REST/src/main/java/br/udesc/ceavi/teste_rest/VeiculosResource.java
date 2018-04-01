@@ -27,9 +27,9 @@ public class VeiculosResource {
     }
 
     @GET
-    @Path( "/buscarid/{id}")
+    @Path( "/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Veiculo getJson( @PathParam( "id" ) String id) {
+    public Veiculo getJson( @PathParam( "id" ) String id ) {
         return (Veiculo) DAOGenerico.ler( Veiculo.class, Long.parseLong( id ) );
     }
     
@@ -138,9 +138,8 @@ public class VeiculosResource {
     }
     
     @DELETE
-    @Path( "/{id}")
     @Consumes( MediaType.APPLICATION_JSON )
-    public void excluir( @PathParam( "id" ) String id ){
-        VeiculoDao.excluir( Long.parseLong( id ) );
+    public void excluir( Veiculo v ){
+        DAOGenerico.exluir( v );
     }
 }
