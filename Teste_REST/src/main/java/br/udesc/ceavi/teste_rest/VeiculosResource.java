@@ -8,6 +8,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -41,89 +42,101 @@ public class VeiculosResource {
     
     /**
      * Enfia no cu essa merda.
+     * /buscar?cat=moto&mont=yamaha&quil=10000&operQuil=menor
+     * @param cat
+     * @param mod
+     * @param mont
+     * @param cor
+     * @param quil
+     * @param operQuil
+     * @param motor
+     * @param operMot
+     * @return 
      */
-//    @GET
-//    @Path( "/buscarw?categoria={cat}&modelo={mod}"
-//            + "&montadora={mont}&cor={cor}"
-//            + "&quilometragem={quil}&operadorQuilometragem={operQuil}"
-//            + "&motor={mot}&operadorMotor={operMot}")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Consumes(MediaType.TEXT_PLAIN)
-//    public List<Veiculo> getConsulta( 
-//            @QueryParam( "cat") String cat, @QueryParam( "mod" ) String mod,
-//            @QueryParam( "mont" ) String mont, @QueryParam( "cor" ) String cor,
-//            @QueryParam( "quil" ) String quil, @QueryParam( "operQuil") String operQuil,
-//            @QueryParam( "mot") String motor, @QueryParam( "operMot" ) String operMot){
-//        int contador = 0;
-//        String condicaoConsulta = "";
-//        String ce = "\"";//Caractere especial
-//        
-//        if( !cat.equalsIgnoreCase( "null" ) ){
-//            condicaoConsulta += "v.categoria = " + ce + cat + ce;
-//            contador++;
-//        }
-//        if( !mod.equalsIgnoreCase( "null" ) ){
-//            if( contador != 0 ){
-//                condicaoConsulta += ",";
-//            }
-//            condicaoConsulta += "v.modelo = " + ce + mod + ce;
-//            contador++;
-//        }
-//        if( !mont.equalsIgnoreCase( "null" ) ){
-//            if( contador != 0 ){
-//                condicaoConsulta += ",";
-//            }
-//            condicaoConsulta += "v.montadora = " + ce + mont + ce;
-//            contador++;
-//        }
-//        if( !cor.equalsIgnoreCase( "null" ) ){
-//            if( contador != 0 ){
-//                condicaoConsulta += ",";
-//            }
-//            condicaoConsulta += "v.cor = " + ce + cor + ce;
-//            contador++;
-//        }
-//        if( !quil.equalsIgnoreCase( "null" ) ){
-//            if( contador != 0 ){
-//                condicaoConsulta += ",";
-//            }
-//            condicaoConsulta += "v.quilometragem";
-//            if( operQuil.equalsIgnoreCase( "igual" ) ){
-//                condicaoConsulta += " = ";
-//            }else if( operQuil.equalsIgnoreCase( "menor" ) ){
-//                condicaoConsulta += " < ";
-//            }else if( operQuil.equalsIgnoreCase( "maior") ){
-//                condicaoConsulta += " > ";
-//            }else if( operQuil.equalsIgnoreCase( "menorIgual") ){
-//                condicaoConsulta += " <= ";
-//            }else if( operQuil.equalsIgnoreCase( "maiorIgual") ){
-//                condicaoConsulta += " >= ";
-//            }
-//            condicaoConsulta += quil;
-//            contador++;
-//        }
-//        if( !motor.equalsIgnoreCase( "null" ) ){
-//            if( contador != 0 ){
-//                condicaoConsulta += ",";
-//            }
-//            condicaoConsulta += "v.motor";
-//            if( operQuil.equalsIgnoreCase( "igual" ) ){
-//                condicaoConsulta += " = ";
-//            }else if( operQuil.equalsIgnoreCase( "menor" ) ){
-//                condicaoConsulta += " < ";
-//            }else if( operQuil.equalsIgnoreCase( "maior") ){
-//                condicaoConsulta += " > ";
-//            }else if( operQuil.equalsIgnoreCase( "menorIgual") ){
-//                condicaoConsulta += " <= ";
-//            }else if( operQuil.equalsIgnoreCase( "maiorIgual") ){
-//                condicaoConsulta += " >= ";
-//            }
-//            condicaoConsulta += motor;
-//            contador++;
-//        }
-//        System.out.println( condicaoConsulta );
-//        return VeiculoDao.buscarComFiltro( condicaoConsulta );
-//    }
+    @GET
+    @Path( "/buscar")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Veiculo> getConsulta( 
+            @DefaultValue( "null" ) @QueryParam( "cat") String cat, 
+            @DefaultValue( "null" ) @QueryParam( "mod" ) String mod,
+            @DefaultValue( "null" ) @QueryParam( "mont" ) String mont,
+            @DefaultValue( "null" ) @QueryParam( "cor" ) String cor,
+            @DefaultValue( "null" ) @QueryParam( "quil" ) String quil,
+            @DefaultValue( "igual" ) @QueryParam( "operQuil") String operQuil,
+            @DefaultValue( "null" ) @QueryParam( "mot") String motor,
+            @DefaultValue( "igual" ) @QueryParam( "operMot" ) String operMot){
+        
+        int contador = 0;
+        String condicaoConsulta = "";
+        String ce = "\"";//Caractere especial
+        String conectivo = " AND ";
+        
+        if( !cat.equalsIgnoreCase( "null" ) ){
+            condicaoConsulta += "v.categoria = " + ce + cat + ce;
+            contador++;
+        }
+        if( !mod.equalsIgnoreCase( "null" ) ){
+            if( contador != 0 ){
+                condicaoConsulta += conectivo;
+            }
+            condicaoConsulta += "v.modelo = " + ce + mod + ce;
+            contador++;
+        }
+        if( !mont.equalsIgnoreCase( "null" ) ){
+            if( contador != 0 ){
+                condicaoConsulta += conectivo;
+            }
+            condicaoConsulta += "v.montadora = " + ce + mont + ce;
+            contador++;
+        }
+        if( !cor.equalsIgnoreCase( "null" ) ){
+            if( contador != 0 ){
+                condicaoConsulta += conectivo;
+            }
+            condicaoConsulta += "v.cor = " + ce + cor + ce;
+            contador++;
+        }
+        if( !quil.equalsIgnoreCase( "null" ) ){
+            if( contador != 0 ){
+                condicaoConsulta += conectivo;
+            }
+            condicaoConsulta += "v.quilometragem";
+            if( operQuil.equalsIgnoreCase( "igual" ) ){
+                condicaoConsulta += " = ";
+            }else if( operQuil.equalsIgnoreCase( "menor" ) ){
+                condicaoConsulta += " < ";
+            }else if( operQuil.equalsIgnoreCase( "maior") ){
+                condicaoConsulta += " > ";
+            }else if( operQuil.equalsIgnoreCase( "menorIgual") ){
+                condicaoConsulta += " <= ";
+            }else if( operQuil.equalsIgnoreCase( "maiorIgual") ){
+                condicaoConsulta += " >= ";
+            }
+            condicaoConsulta += quil;
+            contador++;
+        }
+        if( !motor.equalsIgnoreCase( "null" ) ){
+            if( contador != 0 ){
+                condicaoConsulta += conectivo;
+            }
+            condicaoConsulta += "v.motor";
+            if( operQuil.equalsIgnoreCase( "igual" ) ){
+                condicaoConsulta += " = ";
+            }else if( operQuil.equalsIgnoreCase( "menor" ) ){
+                condicaoConsulta += " < ";
+            }else if( operQuil.equalsIgnoreCase( "maior") ){
+                condicaoConsulta += " > ";
+            }else if( operQuil.equalsIgnoreCase( "menorIgual") ){
+                condicaoConsulta += " <= ";
+            }else if( operQuil.equalsIgnoreCase( "maiorIgual") ){
+                condicaoConsulta += " >= ";
+            }
+            condicaoConsulta += motor;
+            contador++;
+        }
+        System.out.println( condicaoConsulta );
+        return VeiculoDao.buscarComFiltro( condicaoConsulta );
+    }
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
